@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(View view, int position) {
 
+
                 System.out.println(">>>>>>>>>>>>>>>>>> " + position);
             }
 
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
                 mListAdapter.notifyDataSetChanged();
             }
         });
+
+        throw new NullPointerException("测试");
     }
 
     private List<String> buildList() {
