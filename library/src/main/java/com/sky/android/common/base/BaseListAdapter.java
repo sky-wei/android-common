@@ -53,12 +53,13 @@ public abstract class BaseListAdapter<Content, ViewHolder> extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         Content content = getItem(position);
+        int type = getItemViewType(position);
 
         if (convertView == null) {
 
-            convertView = onInflaterView(layoutInflater, parent);
+            convertView = onInflaterView(type, layoutInflater, parent);
 
-            convertView.setTag(onInitViewHolder(convertView));
+            convertView.setTag(onInitViewHolder(type, convertView));
         }
 
         onInflateContent(position, (ViewHolder)convertView.getTag(), content);
@@ -68,18 +69,19 @@ public abstract class BaseListAdapter<Content, ViewHolder> extends BaseAdapter {
 
     /**
      * 实例显示的View
+     * @param type
      * @param layoutInflater
      * @param parent
      * @return
      */
-    public abstract View onInflaterView(LayoutInflater layoutInflater, ViewGroup parent);
+    public abstract View onInflaterView(int type, LayoutInflater layoutInflater, ViewGroup parent);
 
     /**
      * 初始化View
      * @param view
      * @return
      */
-    public abstract ViewHolder onInitViewHolder(View view);
+    public abstract ViewHolder onInitViewHolder(int type, View view);
 
     /**
      * 设置View的内容信息

@@ -31,12 +31,12 @@ public class ListAdapter extends BaseListAdapter<String, ListAdapter.ViewHolder>
     }
 
     @Override
-    public View onInflaterView(LayoutInflater layoutInflater, ViewGroup parent) {
+    public View onInflaterView(int type, LayoutInflater layoutInflater, ViewGroup parent) {
         return layoutInflater.inflate(R.layout.item_list, parent, false);
     }
 
     @Override
-    public ViewHolder onInitViewHolder(View view) {
+    public ViewHolder onInitViewHolder(int type, View view) {
         return new ViewHolder(view);
     }
 
