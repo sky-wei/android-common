@@ -21,6 +21,10 @@ public abstract class SimpleRecyclerAdapter<T> extends BaseRecyclerAdapter<T> {
         mItems = items;
     }
 
+    public List<T> getItems() {
+        return mItems;
+    }
+
     @Override
     public T getItem(int position) {
         return isItemEmpty() ? null : mItems.get(position);

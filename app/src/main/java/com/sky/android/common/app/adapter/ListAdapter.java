@@ -6,14 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.sky.android.common.app.view.ItemLyaout;
 import com.sky.android.common.app.R;
+import com.sky.android.common.app.view.ItemLyaout;
 import com.sky.android.common.base.BaseListAdapter;
 
 /**
  * Created by starrysky on 16-8-20.
  */
-public class ListAdapter extends BaseListAdapter<String, ListAdapter.ViewHolder> {
+public class ListAdapter extends BaseListAdapter<String> {
 
     private ItemLyaout curItemLyaout;
     private OnItemSelectedListener mOnItemSelectedListener;
@@ -30,44 +30,61 @@ public class ListAdapter extends BaseListAdapter<String, ListAdapter.ViewHolder>
         mOnItemSelectedListener = onItemSelectedListener;
     }
 
+//    @Override
+//    public View onInflaterView(int type, LayoutInflater layoutInflater, ViewGroup parent) {
+//        return layoutInflater.inflate(R.layout.item_list, parent, false);
+//    }
+//
+//    @Override
+//    public ViewHolder onInitViewHolder(int type, View view) {
+//        return new ViewHolder(view);
+//    }
+//
+//    @Override
+//    public void onInflateContent(int position, ViewHolder viewHolder, String content) {
+//
+//        viewHolder.setSelected(false);
+//        viewHolder.setPosition(position);
+//
+//        viewHolder.tv_name.setText(content);
+//    }
+
+
     @Override
-    public View onInflaterView(int type, LayoutInflater layoutInflater, ViewGroup parent) {
+    public View onCreateView(LayoutInflater layoutInflater, ViewGroup parent, int viewType) {
         return layoutInflater.inflate(R.layout.item_list, parent, false);
     }
 
     @Override
-    public ViewHolder onInitViewHolder(int type, View view) {
-        return new ViewHolder(view);
+    public ViewHolder<String> onCreateViewHolder(View view, int viewType) {
+        return new ValueHolder(view, this);
     }
 
-    @Override
-    public void onInflateContent(int position, ViewHolder viewHolder, String content) {
+    public class ValueHolder extends BaseListAdapter.ViewHolder implements ItemLyaout.OnItemSelectedListener {
 
-        viewHolder.setSelected(false);
-        viewHolder.setPosition(position);
-
-        viewHolder.tv_name.setText(content);
-    }
-
-    public class ViewHolder implements ItemLyaout.OnItemSelectedListener {
-
-        private ItemLyaout mItemLyaout;
+        private ItemLyaout mItemLayout;
         private int mPosition;
         private TextView tv_name;
 
-        public ViewHolder(View view) {
+        public ValueHolder(View itemView, BaseListAdapter<String> baseListAdapter) {
+            super(itemView, baseListAdapter);
+        }
 
-            mItemLyaout = (ItemLyaout) view;
-            mItemLyaout.setOnItemSelectedListener(this);
+        @Override
+        public void onInitialize() {
+            super.onInitialize();
 
-            tv_name = (TextView) view.findViewById(R.id.tv_name);
+            mItemLayout = (ItemLyaout) mItemView;
+            mItemLayout.setOnItemSelectedListener(this);
+
+            tv_name = (TextView) findViewById(R.id.tv_name);
         }
 
         public void setSelected(boolean selected) {
 
-            if (mItemLyaout.isSelected() == selected) return ;
+            if (mItemLayout.isSelected() == selected) return ;
 
-            mItemLyaout.setSelected(selected);
+            mItemLayout.setSelected(selected);
         }
 
         public void setPosition(int position) {
@@ -91,6 +108,11 @@ public class ListAdapter extends BaseListAdapter<String, ListAdapter.ViewHolder>
 
             curItemLyaout = null;
             mOnItemSelectedListener.onNothingSelected();
+        }
+
+        @Override
+        public void onBind(int position, int viewType) {
+
         }
     }
 

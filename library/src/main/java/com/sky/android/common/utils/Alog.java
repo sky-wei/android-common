@@ -17,7 +17,7 @@ public class Alog {
         return Alog.debug;
     }
 
-    public void setDebug(boolean debug) {
+    public static void setDebug(boolean debug) {
         Alog.debug = debug;
     }
 
