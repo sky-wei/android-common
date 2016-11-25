@@ -11,37 +11,37 @@ import java.util.List;
 /**
  * Created by starrysky on 16-8-2.
  */
-public abstract class BaseListAdapter<Content, ViewHolder> extends BaseAdapter {
+public abstract class BaseListAdapter<T> extends BaseAdapter {
 
-    private Context context;
-    private List<Content> contents;
-    private LayoutInflater layoutInflater;
+    private Context mContext;
+    private List<T> mItems;
+    private LayoutInflater mLayoutInflater;
 
     public BaseListAdapter(Context context) {
-        this.context = context;
-        layoutInflater = LayoutInflater.from(context);
+        mContext = context;
+        mLayoutInflater = LayoutInflater.from(context);
     }
 
     public Context getContext() {
-        return context;
+        return mContext;
     }
 
-    public void setContents(List<Content> contents) {
-        this.contents = contents;
+    public void setItems(List<T> items) {
+        mItems = items;
     }
 
-    public List<Content> getContents() {
-        return contents;
+    public List<T> getItems() {
+        return mItems;
     }
 
     @Override
     public int getCount() {
-        return contents == null ? 0 : contents.size();
+        return mItems == null ? 0 : mItems.size();
     }
 
     @Override
-    public Content getItem(int position) {
-        return contents == null ? null : contents.get(position);
+    public T getItem(int position) {
+        return mItems == null ? null : mItems.get(position);
     }
 
     @Override
@@ -52,42 +52,121 @@ public abstract class BaseListAdapter<Content, ViewHolder> extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Content content = getItem(position);
-        int type = getItemViewType(position);
+        int viewType = getItemViewType(position);
 
         if (convertView == null) {
 
-            convertView = onInflaterView(type, layoutInflater, parent);
+            // 创建View
+            convertView = onCreateView(mLayoutInflater, parent, viewType);
 
-            convertView.setTag(onInitViewHolder(type, convertView));
+            // 创建ViewHolder
+            ViewHolder<T> viewHolder = onCreateViewHolder(convertView, viewType);
+
+            // 初始化操作
+            if (viewHolder != null) viewHolder.onInitialize();
+
+            // 保存
+            convertView.setTag(viewHolder);
         }
 
-        onInflateContent(position, (ViewHolder)convertView.getTag(), content);
+        ViewHolder<T> viewHolder = (ViewHolder)convertView.getTag();
+
+        if (viewHolder != null) {
+            // 进行绑定
+            viewHolder.mPosition = position;
+            viewHolder.onBind(position, viewType);
+        }
 
         return convertView;
     }
 
     /**
      * 实例显示的View
-     * @param type
      * @param layoutInflater
      * @param parent
+     * @param viewType
      * @return
      */
-    public abstract View onInflaterView(int type, LayoutInflater layoutInflater, ViewGroup parent);
+    public abstract View onCreateView(LayoutInflater layoutInflater, ViewGroup parent, int viewType);
 
     /**
      * 初始化View
      * @param view
      * @return
      */
-    public abstract ViewHolder onInitViewHolder(int type, View view);
+    public abstract ViewHolder<T> onCreateViewHolder(View view, int viewType);
 
-    /**
-     * 设置View的内容信息
-     * @param position
-     * @param viewHolder
-     * @param content
-     */
-    public abstract void onInflateContent(int position, ViewHolder viewHolder, Content content);
+
+    public abstract class ViewHolder<T> {
+
+        private int mPosition;
+        protected View mItemView;
+        private BaseListAdapter<T> mBaseListAdapter;
+
+        public ViewHolder(View itemView, BaseListAdapter<T> baseListAdapter) {
+            mItemView = itemView;
+            mBaseListAdapter = baseListAdapter;
+        }
+
+        public void onInitialize() {
+
+        }
+
+        /**
+         * 绑定View，用于处理数据跟View进行关联
+         * @param position 数据索引id
+         * @param viewType View类型
+         */
+        public abstract void onBind(int position, int viewType);
+
+        /**
+         * 通过控件id查找相应的View
+         * @param id 控件id
+         * @return 返回View
+         */
+        public View findViewById(int id) {
+            return mItemView == null ? null : mItemView.findViewById(id);
+        }
+
+        /**
+         * 获取当前绑定的View
+         * @return 返回View
+         */
+        public View getItemView() {
+            return mItemView;
+        }
+
+        /**
+         * 返回List的适配器
+         * @return
+         */
+        public BaseListAdapter<T> getBaseListAdapter() {
+            return mBaseListAdapter;
+        }
+
+        /**
+         * 获取适配器的Item的数量
+         * @return
+         */
+        public int getCount() {
+            return mBaseListAdapter.getCount();
+        }
+
+        /**
+         * 获取指定索引id的内容信息
+         * @param position 索引id
+         * @return 指定id的内容信息
+         */
+        public T getItem(int position) {
+            return mBaseListAdapter.getItem(position);
+        }
+
+        /**
+         * 获取适配器中数据下标
+         * @return
+         */
+        public int getAdapterPosition() {
+            return mPosition;
+        }
+    }
 }

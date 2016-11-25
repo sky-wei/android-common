@@ -11,4 +11,8 @@ public abstract class BaseFragment extends Fragment {
     public Context getContext() {
         return getActivity();
     }
+
+    public Context getApplictionContext() {
+        return getActivity().getApplicationContext();
+    }
 }

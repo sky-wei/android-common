@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list);
 
         mListAdapter = new ListAdapter(this);
-        mListAdapter.setContents(buildList());
+        mListAdapter.setItems(buildList());
         listView.setAdapter(mListAdapter);
 
         mListAdapter.setOnItemSelectedListener(new ListAdapter.OnItemSelectedListener() {

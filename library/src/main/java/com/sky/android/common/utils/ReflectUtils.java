@@ -1,38 +1,62 @@
 package com.sky.android.common.utils;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
+ * Alter byt sky on 16-11-18.
  * Created by starrysky on 16-7-31.
  *
  * 反射的工具类
  */
 public class ReflectUtils {
 
-    public final static String TAG = ReflectUtils.class.getSimpleName();
+    public final static String TAG = "ReflectUtils";
 
-    public static Field findField(Class classz, String name) {
+    public static Field findField(Class tClass, String name) {
 
-        if (classz == null || name == null) return null;
+        if (tClass == null || name == null) return null;
 
         try {
-            Field field = classz.getDeclaredField(name);
+            Field field = tClass.getDeclaredField(name);
             field.setAccessible(true);
             return field;
         } catch (NoSuchFieldException e) {
             Alog.e(TAG, "NoSuchFieldException", e);
         }
-        return findField(classz.getSuperclass(), name);
+        return findField(tClass.getSuperclass(), name);
+    }
+
+    public static Method findMethod(Class tClass, String name, Class<?>... parameterTypes) {
+
+        if (tClass == null || name == null) return null;
+
+        try {
+            Method method = tClass.getDeclaredMethod(name, parameterTypes);
+            method.setAccessible(true);
+            return method;
+        } catch (NoSuchMethodException e) {
+            Alog.e(TAG, "NoSuchMethodException", e);
+        }
+        return findMethod(tClass.getSuperclass(), name, parameterTypes);
+    }
+
+    public static Object getFieldValue(Class tClass, String name) {
+        return getValueQuietly(findField(tClass, name), null);
     }
 
     public static Object getFieldValue(Object object, String name) {
-        return ReflectUtils.getValueQuietly(ReflectUtils.findField(object.getClass(), name), object);
+        return getValueQuietly(findField(object.getClass(), name), object);
+    }
+
+    public static void setFieldValue(Class tClass, String name, Object value) {
+        setValueQuietly(findField(tClass, name), null, value);
     }
 
     public static void setFieldValue(Object object, String name, Object value) {
-        ReflectUtils.setValueQuietly(ReflectUtils.findField(object.getClass(), name), object, value);
+        setValueQuietly(findField(object.getClass(), name), object, value);
     }
 
     public static Object getValueQuietly(Field field, Object object) {
@@ -40,6 +64,7 @@ public class ReflectUtils {
         if (field == null) return null;
 
         try {
+            field.setAccessible(true);
             return field.get(object);
         } catch (IllegalAccessException e) {
             Alog.e(TAG, "IllegalAccessException", e);
@@ -52,43 +77,35 @@ public class ReflectUtils {
         if (field == null) return ;
 
         try {
+            field.setAccessible(true);
             field.set(object, value);
         } catch (IllegalAccessException e) {
             Alog.e(TAG, "IllegalAccessException", e);
         }
     }
 
-    public static Method findMethod(Class classz, String name, Class<?>... parameterTypes) {
+    public static Object invoke(Object receiver, Class tClass, String name,
+                                Class[] parameterTypes, Object[] args) throws InvocationTargetException, IllegalAccessException {
 
-        if (classz == null || name == null) return null;
+        if (tClass == null || name == null) return null;
 
-        try {
-            Method method = classz.getDeclaredMethod(name, parameterTypes);
-            method.setAccessible(true);
-            return method;
-        } catch (NoSuchMethodException e) {
-            Alog.e(TAG, "NoSuchMethodException", e);
-        }
-        return findMethod(classz.getSuperclass(), name, parameterTypes);
-    }
-
-    public static Object invoke(Object receiver, Class classz, String name, Class[] parameterTypes, Object[] args) throws InvocationTargetException, IllegalAccessException {
-
-        if (classz == null || name == null) return null;
-
-        Method method = findMethod(classz, name, parameterTypes);
+        Method method = findMethod(tClass, name, parameterTypes);
 
         return method == null ? null : method.invoke(receiver, args);
     }
 
-    public static Object invokeQuietly(Object receiver, Class classz, String name, Class[] parameterTypes, Object[] args) {
+    public static Object invokeQuietly(Object receiver, Class tClass, String name, Class[] parameterTypes, Object[] args) {
 
         try {
-            return invoke(receiver, classz, name, parameterTypes, args);
+            return invoke(receiver, tClass, name, parameterTypes, args);
         } catch (Exception e) {
-            Alog.e(TAG, "Exception", e);
+            Alog.e(TAG, "Invoke Exception", e);
         }
         return null;
+    }
+
+    public static Object invokeQuietly(Object receiver, String name) {
+        return invokeQuietly(receiver, name, null, null);
     }
 
     public static Object invokeQuietly(Object receiver, String name, Class[] parameterTypes, Object[] args) {
@@ -98,30 +115,31 @@ public class ReflectUtils {
         return invokeQuietly(receiver, receiver.getClass(), name, parameterTypes, args);
     }
 
-    public static Object invokeQuietly(Class classz, String name, Class[] parameterTypes, Object[] args) {
-        return invokeQuietly(null, classz, name, parameterTypes, args);
+    public static Object invokeQuietly(Class tClass, String name, Class[] parameterTypes, Object[] args) {
+        return invokeQuietly(null, tClass, name, parameterTypes, args);
     }
 
-    public static Object invokeQuietly(Class classz, String name) {
-        return invokeQuietly(null, classz, name, null, null);
+    public static Object invokeQuietly(Class tClass, String name) {
+        return invokeQuietly(null, tClass, name, null, null);
     }
 
-    public static Object invokeQuietly(Object receiver, String name) {
-        return invokeQuietly(receiver, name, null, null);
+    public static Object newInstance(Class tClass) {
+        return newInstance(tClass, null, null);
     }
 
-    public static Object invokeQuietly(Object receiver, Class classz, String name) {
-        return invokeQuietly(receiver, classz, name, null, null);
-    }
+    public static Object newInstance(Class tClass, Class[] parameterTypes, Object[] args) {
 
-    public static Object invokeQuietly(Method method, Object receiver, Object[] args) {
-
-        if (method == null) return null;
+        if (tClass == null) return null;
 
         try {
-            return method.invoke(receiver, args);
+            // 获取类的构造方法
+            Constructor constructor = tClass.getConstructor(parameterTypes);
+            constructor.setAccessible(true);
+
+            // 创建类的实例
+            return constructor.newInstance(args);
         } catch (Exception e) {
-            Alog.e(TAG, "Exception", e);
+            e.printStackTrace();
         }
         return null;
     }
@@ -131,9 +149,10 @@ public class ReflectUtils {
         if (className == null) return null;
 
         try {
-            return Thread.currentThread().getContextClassLoader().loadClass(className);
+            ClassLoader loader = getClassLoader();
+            return loader.loadClass(className);
         } catch (Exception e) {
-            Alog.e(TAG, "Exception", e);
+            Alog.e(TAG, "LoadClass Exception", e);
         }
         return null;
     }

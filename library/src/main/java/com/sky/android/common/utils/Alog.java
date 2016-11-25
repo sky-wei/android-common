@@ -17,7 +17,7 @@ public class Alog {
         return Alog.debug;
     }
 
-    public void setDebug(boolean debug) {
+    public static void setDebug(boolean debug) {
         Alog.debug = debug;
     }
 
@@ -47,6 +47,10 @@ public class Alog {
 
     public static void e(String msg) {
         e(TAG, msg);
+    }
+
+    public static void e(String msg, Throwable tr) {
+        e(TAG, msg, tr);
     }
 
     public static void e(String tag, String msg) {

@@ -8,12 +8,15 @@ import android.view.ViewGroup;
 
 import com.sky.android.common.interfaces.OnItemEventListener;
 
+import java.util.List;
+
 /**
  * Created by starrysky on 16-8-2.
  */
 public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRecyclerHolder<T>> {
 
     private Context mContext;
+    private List<T> mItems;
     private LayoutInflater mLayoutInflater;     // 用于加载布局文件
 
     private OnItemEventListener mOnItemEventListener;
@@ -33,6 +36,27 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
 
     public void setOnItemEventListener(OnItemEventListener onItemEventListener) {
         mOnItemEventListener = onItemEventListener;
+    }
+
+    public void setItems(List<T> items) {
+        mItems = items;
+    }
+
+    public List<T> getItems() {
+        return mItems;
+    }
+
+    public T getItem(int position) {
+        return isItemEmpty() ? null : mItems.get(position);
+    }
+
+    @Override
+    public int getItemCount() {
+        return isItemEmpty() ? 0 : mItems.size();
+    }
+
+    protected boolean isItemEmpty() {
+        return mItems == null || mItems.isEmpty() ? true : false;
     }
 
     @Override
@@ -99,11 +123,4 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
      * @return 返回ViewHolder
      */
     public abstract BaseRecyclerHolder<T> onCreateViewHolder(View itemView, int viewType);
-
-    /**
-     * 获取指定索引id的内容信息
-     * @param position 索引id
-     * @return 指定id的内容信息
-     */
-    public abstract T getItem(int position);
 }

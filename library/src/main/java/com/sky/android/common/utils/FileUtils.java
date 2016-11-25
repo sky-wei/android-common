@@ -9,9 +9,16 @@ import java.io.IOException;
  */
 public class FileUtils {
 
+    /**
+     * 创建文件
+     * @param file
+     * @return
+     */
     public static boolean createFile(File file) {
 
-        if (file.exists()) return true;
+        if (file == null) return false;
+
+        if (file.isFile()) return true;
 
         // 创建目录
         createDir(file.getParentFile());
@@ -19,9 +26,18 @@ public class FileUtils {
         try {
             return file.createNewFile();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alog.e("CreateNewFile Exception", e);
         }
         return false;
+    }
+
+    /**
+     * 删除文件
+     * @param file
+     * @return
+     */
+    public static boolean deleteFile(File file) {
+        return (file == null || !file.isFile()) ? false : file.delete();
     }
 
     /**
