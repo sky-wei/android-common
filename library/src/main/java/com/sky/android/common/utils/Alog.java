@@ -49,6 +49,10 @@ public class Alog {
         e(TAG, msg);
     }
 
+    public static void e(String msg, Throwable tr) {
+        e(TAG, msg, tr);
+    }
+
     public static void e(String tag, String msg) {
         Log.e(tag, msg);
     }
