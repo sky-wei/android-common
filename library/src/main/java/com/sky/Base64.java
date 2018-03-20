@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sky.android.common.utils;
+package com.sky;
 
 import android.util.Base64OutputStream;
 import java.io.UnsupportedEncodingException;
