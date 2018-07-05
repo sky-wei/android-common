@@ -2,6 +2,31 @@
 
 主要为Android项目提供一些公共的方法，以方便自己在项目中使用。
 
+### How to
+
+To get a Git project into your build:
+
+Step 1. Add the JitPack repository to your build file
+
+Add it in your root build.gradle at the end of repositories:
+
+```
+    allprojects {
+        repositories {
+            ...
+            maven { url 'https://jitpack.io' }
+        }
+    }
+```
+
+Step 2. Add the dependency
+
+```
+    dependencies {
+            implementation 'com.github.jingcai-wei:android-common:1.1.0'
+    }
+```
+
 
 ## License
 
