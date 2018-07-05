@@ -19,7 +19,7 @@ package com.sky.android.common.interfaces;
 import android.view.View;
 
 /**
- * Created by starrysky on 16-8-2.
+ * Created by sky on 16-8-2.
  */
 public interface OnItemEventListener {
 

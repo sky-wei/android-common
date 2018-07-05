@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.sky.android.common.utils;
+package com.sky.android.common.util;
 
 import android.content.Context;
 
 /**
- * Created by starrysky on 14-12-16.
+ * Created by sky on 14-12-16.
  */
 public class DisplayUtils {
 

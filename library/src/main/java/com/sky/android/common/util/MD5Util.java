@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.sky.android.common.utils;
+package com.sky.android.common.util;
 
 import android.text.TextUtils;
 
 import java.security.MessageDigest;
 
 /**
- * Created by starrysky on 16-8-2.
+ * Created by sky on 16-8-2.
  */
-public class MD5Utils {
+public class MD5Util {
 
     private static final String TAG = "MD5Utils";
 

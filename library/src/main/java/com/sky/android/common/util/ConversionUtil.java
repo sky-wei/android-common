@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sky.android.common.utils;
+package com.sky.android.common.util;
 
 import android.text.TextUtils;
 
@@ -27,7 +27,7 @@ import java.util.Date;
  * Created by sky on 2016/11/25.
  */
 
-public class ConversionUtils {
+public class ConversionUtil {
 
     private static final String TAG = "ConversionUtils";
 

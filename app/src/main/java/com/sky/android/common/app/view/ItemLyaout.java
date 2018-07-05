@@ -22,7 +22,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 /**
- * Created by starrysky on 16-8-20.
+ * Created by sky on 16-8-20.
  */
 public class ItemLyaout extends RelativeLayout implements View.OnClickListener {
 

@@ -27,7 +27,7 @@ import com.sky.android.common.interfaces.OnItemEventListener;
 import java.util.List;
 
 /**
- * Created by starrysky on 16-8-2.
+ * Created by sky on 16-8-2.
  */
 public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRecyclerHolder<T>> {
 

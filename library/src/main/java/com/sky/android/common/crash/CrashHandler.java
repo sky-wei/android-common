@@ -22,10 +22,9 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 
-import com.sky.android.common.utils.FileUtils;
+import com.sky.android.common.util.FileUtil;
 
 import java.io.BufferedWriter;
-import java.io.Closeable;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -111,9 +110,9 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
                 printWriter.flush();
                 fileWriter.flush();
             } catch (IOException e) {
-                FileUtils.closeQuietly(fileWriter);
-                FileUtils.closeQuietly(bufdWriter);
-                FileUtils.closeQuietly(printWriter);
+                FileUtil.closeQuietly(fileWriter);
+                FileUtil.closeQuietly(bufdWriter);
+                FileUtil.closeQuietly(printWriter);
             }
         }
     }
@@ -131,7 +130,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             // 删除文件
             file.delete();
         }
-        return FileUtils.createFile(file);
+        return FileUtil.createFile(file);
     }
 
     /**

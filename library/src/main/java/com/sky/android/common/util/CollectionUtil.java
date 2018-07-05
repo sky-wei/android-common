@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sky.android.common.utils;
+package com.sky.android.common.util;
 
 import java.util.Collection;
 
@@ -24,7 +24,7 @@ import java.util.Collection;
  * 其他集合工具类：{@link java.util.Arrays}, {@link java.util.Collections}
  */
 
-public class CollectionUtils {
+public class CollectionUtil {
 
     public static boolean isEmpty(Collection collection) {
         return collection == null ? true : collection.isEmpty();

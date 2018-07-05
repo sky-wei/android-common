@@ -27,7 +27,7 @@ import com.sky.android.common.app.view.ItemLyaout;
 import com.sky.android.common.base.BaseListAdapter;
 
 /**
- * Created by starrysky on 16-8-20.
+ * Created by sky on 16-8-20.
  */
 public class ListAdapter extends BaseListAdapter<String> {
 

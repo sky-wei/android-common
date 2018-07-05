@@ -22,7 +22,7 @@ import android.view.View;
 import com.sky.android.common.interfaces.OnItemEventListener;
 
 /**
- * Created by starrysky on 16-8-2.
+ * Created by sky on 16-8-2.
  */
 public abstract class BaseRecyclerHolder<T> extends RecyclerView.ViewHolder {
 

@@ -21,37 +21,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Hello World!" />-->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100px"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Test"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="100px"
-        android:divider="#7f7f7f"
-        android:dividerHeight="5px">
-
-    </ListView>
-
+    <Button
+        android:id="@+id/btn_browse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onBrowse"
+        android:text="Browse"/>
 
 </RelativeLayout>

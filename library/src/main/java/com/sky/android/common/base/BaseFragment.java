@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 The sky Authors.
+ * Copyright (c) 2018 The sky Authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,18 +17,70 @@
 package com.sky.android.common.base;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.sky.android.common.util.AToast;
 
 /**
- * Created by starrysky on 16-8-2.
+ * Created by sky on 16-8-2.
  */
 public abstract class BaseFragment extends Fragment {
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return createView(inflater, container);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // 初始化View
+        initView(view, getArguments());
+    }
+
+    /**
+     * 创建View
+     * @param inflater
+     * @param container
+     * @return
+     */
+    protected View createView(LayoutInflater inflater, ViewGroup container) {
+        return inflater.inflate(getLayoutId(), container, false);
+    }
+
+    /**
+     * 获取布局id
+     * @return
+     */
+    protected abstract int getLayoutId();
+
+    /**
+     * 初始化View
+     * @param view
+     * @param args
+     */
+    protected abstract void initView(View view, Bundle args);
 
     public Context getContext() {
         return getActivity();
     }
 
-    public Context getApplictionContext() {
+    public Context getApplicationContext() {
         return getActivity().getApplicationContext();
+    }
+
+    /**
+     * 显示提示消息
+     * @param msg
+     */
+    public void showMessage(String msg) {
+        AToast.show(msg);
     }
 }

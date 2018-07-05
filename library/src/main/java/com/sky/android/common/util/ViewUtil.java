@@ -14,19 +14,37 @@
  * limitations under the License.
  */
 
-package com.sky.android.common.utils;
+package com.sky.android.common.util;
 
 import android.view.View;
+import android.widget.TextView;
 
 /**
- * Created by starrysky on 16-8-2.
+ * Created by sky on 16-8-2.
  */
-public class ViewUtils {
+public class ViewUtil {
 
     public static void setVisibility(View view, int visibility) {
 
         if (view == null || view.getVisibility() == visibility) return ;
 
         view.setVisibility(visibility);
+    }
+
+    public static void setVisibility(int visibility, View... views) {
+
+        if (views == null) return ;
+
+        for (View view : views) {
+            setVisibility(view, visibility);
+        }
+    }
+
+    public static String getText(TextView textView) {
+        return textView != null ? charSequenceToString(textView.getText()) : null;
+    }
+
+    public static String charSequenceToString(CharSequence charSequence) {
+        return charSequence != null ? charSequence.toString() : null;
     }
 }

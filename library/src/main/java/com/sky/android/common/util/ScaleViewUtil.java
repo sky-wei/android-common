@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sky.android.common.utils;
+package com.sky.android.common.util;
 
 import android.app.Activity;
 import android.content.Context;
@@ -28,9 +28,9 @@ import android.widget.TextView;
 import java.lang.reflect.Method;
 
 /**
- * Created by starrysky on 16-7-31.
+ * Created by sky on 16-7-31.
  */
-public class ScaleViewUtils {
+public class ScaleViewUtil {
 
     private static int width = 0;
     private static int height = 0;
@@ -49,12 +49,12 @@ public class ScaleViewUtils {
     }
 
     public static void setNoOpt(boolean noOpt) {
-        ScaleViewUtils.noOpt = noOpt;
+        ScaleViewUtil.noOpt = noOpt;
     }
 
     private static void init(int width, int height) {
-        ScaleViewUtils.width = width;
-        ScaleViewUtils.height = height;
+        ScaleViewUtil.width = width;
+        ScaleViewUtil.height = height;
 
         Alog.d("windows", "w: " + width + ", h:" + height);
 

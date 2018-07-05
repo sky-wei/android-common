@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package com.sky.android.common.utils;
+package com.sky.android.common.util;
+
+import android.text.TextUtils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -23,11 +25,11 @@ import java.lang.reflect.Method;
 
 /**
  * Alter byt sky on 16-11-18.
- * Created by starrysky on 16-7-31.
+ * Created by sky on 16-7-31.
  *
  * 反射的工具类
  */
-public class ReflectUtils {
+public class ReflectUtil {
 
     public final static String TAG = "ReflectUtils";
 
@@ -169,6 +171,18 @@ public class ReflectUtils {
             return loader.loadClass(className);
         } catch (Exception e) {
             Alog.e(TAG, "LoadClass Exception", e);
+        }
+        return null;
+    }
+
+    public static Class classForName(String className) {
+
+        if (TextUtils.isEmpty(className)) return null;
+
+        try {
+            return Class.forName(className);
+        } catch (ClassNotFoundException e) {
+            Alog.e(TAG, "没有找到相应的类", e);
         }
         return null;
     }

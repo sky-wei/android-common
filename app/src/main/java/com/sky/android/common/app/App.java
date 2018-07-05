@@ -20,13 +20,14 @@ import android.app.Application;
 
 import com.sky.android.common.crash.CrashHandler;
 import com.sky.android.common.crash.CrashListener;
+import com.sky.android.common.util.AToast;
 
 import java.io.File;
 
 /**
- * Created by starrysky on 16-8-27.
+ * Created by sky on 16-8-27.
  */
-public class SkyApplication extends Application {
+public class App extends Application {
 
     @Override
     public void onCreate() {
@@ -40,5 +41,7 @@ public class SkyApplication extends Application {
             }
         });
         Thread.setDefaultUncaughtExceptionHandler(crashHandler);
+
+        AToast.getInstance().init(this);
     }
 }

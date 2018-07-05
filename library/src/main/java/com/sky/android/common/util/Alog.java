@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.sky.android.common.utils;
+package com.sky.android.common.util;
 
 import android.util.Log;
 
 /**
- * Created by starrysky on 16-7-31.
+ * Created by sky on 16-7-31.
  *
  * 日志输出类
  */
@@ -75,6 +75,18 @@ public class Alog {
 
     public static void e(String tag, String msg, Throwable tr) {
         if (DEBUG) Log.e(tag, msg, tr);
+    }
+
+    public static void v(String msg) {
+        if (DEBUG) v(TAG, msg);
+    }
+
+    public static void v(String tag, String msg) {
+        if (DEBUG) Log.v(tag, msg);
+    }
+
+    public static void v(String tag, String msg, Throwable tr) {
+        if (DEBUG) Log.v(tag, msg, tr);
     }
 
     public static void w(String msg) {
