@@ -25,79 +25,80 @@ import android.util.Log;
  */
 public class Alog {
 
-    public final static String TAG = Alog.class.getSimpleName();
+    public static final String TAG = "Main";
+    private static final String PREFIX = "ALog.";
 
-    private static boolean DEBUG = false;
+    private static boolean sDebug = false;
 
-    public static boolean isDEBUG() {
-        return Alog.DEBUG;
+    public static boolean isDebug() {
+        return Alog.sDebug;
     }
 
-    public static void setDEBUG(boolean DEBUG) {
-        Alog.DEBUG = DEBUG;
+    public static void setDebug(boolean debug) {
+        Alog.sDebug = debug;
     }
 
     public static void i(String msg) {
-        if (DEBUG) i(TAG, msg);
+        if (sDebug) i(TAG, msg);
     }
 
     public static void i(String tag, String msg) {
-        if (DEBUG) Log.i(tag, msg);
+        if (sDebug) Log.i(PREFIX + tag, msg);
     }
 
     public static void i(String tag, String msg, Throwable tr) {
-        if (DEBUG) Log.i(tag, msg, tr);
+        if (sDebug) Log.i(PREFIX + tag, msg, tr);
     }
 
     public static void d(String msg) {
-        if (DEBUG) d(TAG, msg);
+        if (sDebug) d(TAG, msg);
     }
 
     public static void d(String tag, String msg) {
-        if (DEBUG) Log.d(tag, msg);
+        if (sDebug) Log.d(PREFIX + tag, msg);
     }
 
     public static void d(String tag, String msg, Throwable tr) {
-        if (DEBUG) Log.d(tag, msg, tr);
+        if (sDebug) Log.d(PREFIX + tag, msg, tr);
     }
 
     public static void e(String msg) {
-        if (DEBUG) e(TAG, msg);
+        if (sDebug) e(TAG, msg);
     }
 
     public static void e(String msg, Throwable tr) {
-        if (DEBUG) e(TAG, msg, tr);
+        if (sDebug) e(TAG, msg, tr);
     }
 
     public static void e(String tag, String msg) {
-        if (DEBUG) Log.e(tag, msg);
+        if (sDebug) Log.e(PREFIX + tag, msg);
     }
 
     public static void e(String tag, String msg, Throwable tr) {
-        if (DEBUG) Log.e(tag, msg, tr);
+        if (sDebug) Log.e(PREFIX + tag, msg, tr);
     }
 
     public static void v(String msg) {
-        if (DEBUG) v(TAG, msg);
+        if (sDebug) v(TAG, msg);
     }
 
     public static void v(String tag, String msg) {
-        if (DEBUG) Log.v(tag, msg);
+        if (sDebug) Log.v(PREFIX + tag, msg);
     }
 
     public static void v(String tag, String msg, Throwable tr) {
-        if (DEBUG) Log.v(tag, msg, tr);
+        if (sDebug) Log.v(PREFIX + tag, msg, tr);
     }
 
     public static void w(String msg) {
-        if (DEBUG) w(TAG, msg);
+        if (sDebug) w(TAG, msg);
     }
 
     public static void w(String tag, String msg) {
-        if (DEBUG) Log.w(tag, msg);
+        if (sDebug) Log.w(PREFIX + tag, msg);
     }
 
     public static void w(String tag, String msg, Throwable tr) {
-        if (DEBUG) Log.w(tag, msg, tr);
+        if (sDebug) Log.w(PREFIX + tag, msg, tr);
     }
 }
