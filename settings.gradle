@@ -1,4 +1,3 @@
-include ':ui'
 include ':core'
 include ':base'
 include ':app', ':library'
