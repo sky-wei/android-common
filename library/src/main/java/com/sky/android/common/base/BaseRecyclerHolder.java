@@ -16,7 +16,7 @@
 
 package com.sky.android.common.base;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import com.sky.android.common.interfaces.OnItemEventListener;
