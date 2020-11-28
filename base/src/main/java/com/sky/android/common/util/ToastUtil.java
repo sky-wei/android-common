@@ -20,12 +20,15 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 /**
  * Created by sky on 2020-11-27.
  */
 public class ToastUtil {
 
-    @SuppressLint("StaticFieldLeak") static volatile ToastUtil singleton;
+    @SuppressLint("StaticFieldLeak")
+    private static volatile ToastUtil singleton = null;
 
     private final Context mContext;
     private final Factory mFactory;
@@ -60,7 +63,7 @@ public class ToastUtil {
      * 初始化
      * @param context
      */
-    public static void initialize(Context context) {
+    public static void initialize(@NonNull Context context) {
         initialize(new Builder(context));
     }
 
@@ -68,7 +71,7 @@ public class ToastUtil {
      * 初始化
      * @param builder
      */
-    public static void initialize(Builder builder) {
+    public static void initialize(@NonNull Builder builder) {
         if (singleton == null) {
             synchronized (ToastUtil.class) {
                 if (singleton == null) {

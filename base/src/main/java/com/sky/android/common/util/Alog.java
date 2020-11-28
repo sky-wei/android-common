@@ -26,7 +26,8 @@ import androidx.annotation.NonNull;
  */
 public class Alog {
 
-    @SuppressLint("StaticFieldLeak") static volatile Alog singleton = new Builder().build();
+    @SuppressLint("StaticFieldLeak")
+    private static volatile Alog singleton = null;
 
     private final String mPrefix;
     private final String mTag;
@@ -39,7 +40,6 @@ public class Alog {
         mDebug = build.mDebug;
         mAdapter = build.mAdapter;
     }
-
 
     public Adapter getAdapter() {
         return mAdapter;
@@ -91,6 +91,13 @@ public class Alog {
      * @return
      */
     public static @NonNull Alog getInstance() {
+        if (singleton == null) {
+            synchronized (Alog.class) {
+                if (singleton == null) {
+                    singleton = new Builder().build();
+                }
+            }
+        }
         return singleton;
     }
 
@@ -98,84 +105,89 @@ public class Alog {
      * 设置实例类
      * @param alog
      */
-    public static void setInstance(@NonNull Alog alog) {
-        singleton = alog;
+    public static void setSingletonInstance(@NonNull Alog alog) {
+        synchronized (Alog.class) {
+            if (singleton != null) {
+                throw new IllegalStateException("Singleton instance already exists.");
+            }
+            singleton = alog;
+        }
     }
 
     public static String getPrefix() {
-        return singleton.mPrefix;
+        return getInstance().mPrefix;
     }
 
     public static String getTag() {
-        return singleton.mTag;
+        return getInstance().mTag;
     }
 
     public static boolean isDebug() {
-        return singleton.mDebug;
+        return getInstance().mDebug;
     }
 
     public static void i(String msg) {
-        singleton.println(Log.INFO, msg);
+        getInstance().println(Log.INFO, msg);
     }
 
     public static void i(String tag, String msg) {
-        singleton.println(Log.INFO, tag, msg);
+        getInstance().println(Log.INFO, tag, msg);
     }
 
     public static void i(String tag, String msg, Throwable tr) {
-        singleton.println(Log.INFO, tag, msg, tr);
+        getInstance().println(Log.INFO, tag, msg, tr);
     }
 
     public static void d(String msg) {
-        singleton.println(Log.DEBUG, msg);
+        getInstance().println(Log.DEBUG, msg);
     }
 
     public static void d(String tag, String msg) {
-        singleton.println(Log.DEBUG, tag, msg);
+        getInstance().println(Log.DEBUG, tag, msg);
     }
 
     public static void d(String tag, String msg, Throwable tr) {
-        singleton.println(Log.DEBUG, tag, msg, tr);
+        getInstance().println(Log.DEBUG, tag, msg, tr);
     }
 
     public static void e(String msg) {
-        singleton.println(Log.ERROR, msg);
+        getInstance().println(Log.ERROR, msg);
     }
 
     public static void e(String msg, Throwable tr) {
-        singleton.println(Log.ERROR, msg, tr);
+        getInstance().println(Log.ERROR, msg, tr);
     }
 
     public static void e(String tag, String msg) {
-        singleton.println(Log.ERROR, tag, msg);
+        getInstance().println(Log.ERROR, tag, msg);
     }
 
     public static void e(String tag, String msg, Throwable tr) {
-        singleton.println(Log.ERROR, tag, msg, tr);
+        getInstance().println(Log.ERROR, tag, msg, tr);
     }
 
     public static void v(String msg) {
-        singleton.println(Log.VERBOSE, msg);
+        getInstance().println(Log.VERBOSE, msg);
     }
 
     public static void v(String tag, String msg) {
-        singleton.println(Log.VERBOSE, tag, msg);
+        getInstance().println(Log.VERBOSE, tag, msg);
     }
 
     public static void v(String tag, String msg, Throwable tr) {
-        singleton.println(Log.VERBOSE, tag, msg, tr);
+        getInstance().println(Log.VERBOSE, tag, msg, tr);
     }
 
     public static void w(String msg) {
-        singleton.println(Log.WARN, msg);
+        getInstance().println(Log.WARN, msg);
     }
 
     public static void w(String tag, String msg) {
-        singleton.println(Log.WARN, tag, msg);
+        getInstance().println(Log.WARN, tag, msg);
     }
 
     public static void w(String tag, String msg, Throwable tr) {
-        singleton.println(Log.WARN, tag, msg, tr);
+        getInstance().println(Log.WARN, tag, msg, tr);
     }
 
 
