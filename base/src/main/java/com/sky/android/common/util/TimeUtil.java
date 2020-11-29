@@ -62,7 +62,7 @@ public class TimeUtil {
         return getInstance().dateFormat(date);
     }
 
-    public Date parse(@NonNull String source) throws ParseException {
+    public static Date parse(@NonNull String source) throws ParseException {
         return getInstance().dateParse(source);
     }
 
