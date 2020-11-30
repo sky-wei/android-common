@@ -28,6 +28,14 @@ public class ConversionUtil {
     private ConversionUtil() {
     }
 
+    public static String toString(String value, String defaultValue) {
+        return TextUtils.isEmpty(value) ? defaultValue : value;
+    }
+
+    public static String toString(String value) {
+        return toString(value, "");
+    }
+
     public static int parseInt(String value) {
         return parseInt(value, 0);
     }

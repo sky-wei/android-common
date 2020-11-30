@@ -80,12 +80,13 @@ public abstract class BaseFragment extends Fragment {
      */
     protected abstract void initView(@NonNull View view, @Nullable Bundle args);
 
+    @NonNull
     public Context getContext() {
         return getActivity();
     }
 
     public Context getApplicationContext() {
-        return getActivity().getApplicationContext();
+        return getContext().getApplicationContext();
     }
 
     /**

@@ -21,7 +21,8 @@ public abstract class BaseRecyclerHolder<T> extends RecyclerView.ViewHolder {
     /**
      * 初始化，用来初始化相应的控件
      */
-    public abstract void onInitialize();
+    public void onInitialize() {
+    }
 
     /**
      * 绑定View，用于处理数据跟View进行关联
