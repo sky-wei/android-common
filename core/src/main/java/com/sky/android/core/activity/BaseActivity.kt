@@ -13,37 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.sky.android.core.activity
 
-package com.sky.android.core.activity;
-
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.sky.android.common.util.ToastUtil;
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.sky.android.common.util.ToastUtil
 
 /**
  * Created by sky on 2020-11-29.
  */
-public abstract class BaseActivity extends AppCompatActivity {
+abstract class BaseActivity : AppCompatActivity() {
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         // 获取布局文件id
-        int layoutId = getLayoutId();
-
-        if (layoutId != 0) {
-            setContentView(layoutId);
-        }
+        setContentView(layoutId)
 
         // 初始化
-        initView(savedInstanceState, getIntent());
+        initView(savedInstanceState, intent)
     }
 
     /**
@@ -51,35 +41,37 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @param savedInstanceState
      * @param intent
      */
-    protected void initView(
-            @Nullable Bundle savedInstanceState,
-            @NonNull Intent intent
+    protected open fun initView(
+            savedInstanceState: Bundle?,
+            intent: Intent
     ) {
         // 初始化View
-        initView(intent);
+        initView(intent)
     }
 
     /**
      * 获取布局id
      * @return
      */
-    protected abstract int getLayoutId();
+    protected abstract val layoutId: Int
 
     /**
      * 初始化view
      * @param intent
      */
-    protected abstract void initView(@NonNull Intent intent);
+    protected abstract fun initView(intent: Intent)
 
-    public Context getContext() {
-        return this;
-    }
+    /**
+     * 获取Context
+     */
+    val context: Context
+        get() = this
 
     /**
      * 显示消息
      * @param msg
      */
-    public void showMessage(String msg) {
-        ToastUtil.show(msg);
+    open fun showMessage(msg: String) {
+        ToastUtil.show(msg)
     }
 }
