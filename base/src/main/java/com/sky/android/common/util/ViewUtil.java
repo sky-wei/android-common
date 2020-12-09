@@ -31,6 +31,10 @@ public class ViewUtil {
         view.setVisibility(visibility);
     }
 
+    public static void setVisibility(View view, boolean visibility) {
+        setVisibility(view, visibility ? View.VISIBLE : View.GONE);
+    }
+
     public static void setVisibility(int visibility, View... views) {
 
         if (views == null) return ;

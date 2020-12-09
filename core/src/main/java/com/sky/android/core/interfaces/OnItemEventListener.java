@@ -9,5 +9,5 @@ import androidx.annotation.NonNull;
  */
 public interface OnItemEventListener {
 
-    void onItemEvent(int event, @NonNull View view, int position, Object... args);
+    boolean onItemEvent(int event, @NonNull View view, int position, Object... args);
 }
