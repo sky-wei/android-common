@@ -23,11 +23,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.sky.android.common.util.ToastUtil
+import com.sky.android.core.interfaces.IBaseView
 
 /**
  * Created by sky on 2020-11-29.
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment(), IBaseView {
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -98,11 +99,25 @@ abstract class BaseFragment : Fragment() {
     val application: Application
         get() = activity!!.application
 
+    override fun showLoading() {
+        val baseView = activity
+        if (baseView is IBaseView) {
+            baseView.showLoading()
+        }
+    }
+
+    override fun cancelLoading() {
+        val baseView = activity
+        if (baseView is IBaseView) {
+            baseView.cancelLoading()
+        }
+    }
+
     /**
      * 显示提示消息
      * @param msg
      */
-    open fun showMessage(msg: String) {
+    override fun showMessage(msg: String) {
         ToastUtil.show(msg)
     }
 }

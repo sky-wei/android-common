@@ -20,6 +20,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.sky.android.core.viewmodel.BaseViewModel
+import com.sky.android.core.viewmodel.ViewModelFactory
 
 /**
  * Created by sky on 2020-12-07.
@@ -42,7 +43,7 @@ abstract class BaseVMFragment<VM: BaseViewModel> : BaseFragment() {
     protected open fun createViewModel(): VM {
         return ViewModelProvider(
                 this,
-                ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+                ViewModelFactory.getInstance(application)
         ).get(viewModelClass)
     }
 

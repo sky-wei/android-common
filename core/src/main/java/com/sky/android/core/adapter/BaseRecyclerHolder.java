@@ -96,8 +96,8 @@ public abstract class BaseRecyclerHolder<T> extends RecyclerView.ViewHolder {
      * @param view 响应事件的view
      * @param position 索引id
      */
-    public void callItemEvent(View view, int position, Object... args) {
-        callItemEvent(-1, view, position, args);
+    public boolean callItemEvent(View view, int position, Object... args) {
+        return callItemEvent(-1, view, position, args);
     }
 
     /**
@@ -106,9 +106,12 @@ public abstract class BaseRecyclerHolder<T> extends RecyclerView.ViewHolder {
      * @param view 响应事件的view
      * @param position 索引id
      */
-    public void callItemEvent(int event, View view, int position, Object... args) {
+    public boolean callItemEvent(int event, View view, int position, Object... args) {
         // 事件响应回调
         OnItemEventListener listener = mBaseRecyclerAdapter.getOnItemEventListener();
-        if (listener != null) listener.onItemEvent(event, view, position, args);
+        if (listener != null) {
+            return listener.onItemEvent(event, view, position, args);
+        }
+        return false;
     }
 }

@@ -20,11 +20,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.sky.android.common.util.ToastUtil
+import com.sky.android.core.interfaces.IBaseView
 
 /**
  * Created by sky on 2020-11-29.
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), IBaseView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +72,7 @@ abstract class BaseActivity : AppCompatActivity() {
      * 显示消息
      * @param msg
      */
-    open fun showMessage(msg: String) {
+    override fun showMessage(msg: String) {
         ToastUtil.show(msg)
     }
 }
