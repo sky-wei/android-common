@@ -18,6 +18,11 @@ package com.sky.android.core.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * Created by sky on 2020-12-07.
@@ -26,5 +31,13 @@ abstract class BaseViewModel(
         application: Application
 ) : AndroidViewModel(application) {
 
+    fun launchOnUI(block: suspend CoroutineScope.() -> Unit) {
+        viewModelScope.launch { block() }
+    }
 
+    suspend fun <T> launchOnIO(block: suspend CoroutineScope.() -> T) {
+        withContext(Dispatchers.IO) {
+            block()
+        }
+    }
 }
