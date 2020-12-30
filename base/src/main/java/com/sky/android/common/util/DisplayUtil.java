@@ -17,11 +17,25 @@
 package com.sky.android.common.util;
 
 import android.content.Context;
+import android.util.DisplayMetrics;
+import android.view.WindowManager;
 
 /**
  * Created by sky on 2020-11-28.
  */
 public class DisplayUtil {
+
+    public static int getHeight(Context context) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
+    }
+
+    public static int getWidth(Context context) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.widthPixels;
+    }
 
     public static float getDensity(Context context) {
         return context.getResources().getDisplayMetrics().density;
