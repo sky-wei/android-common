@@ -21,8 +21,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.sky.android.common.fragment.BrowseFragment;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -33,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void onBrowse(View view) {
 
-        Intent intent = new Intent(this, BrowseActivity.class);
-        intent.putExtra(BrowseFragment.BROWSE_URL, "http://www.baidu.com");
-
-        startActivity(intent);
+//        Intent intent = new Intent(this, BrowseActivity.class);
+//        intent.putExtra(BrowseFragment.BROWSE_URL, "http://www.baidu.com");
+//
+//        startActivity(intent);
     }
 }

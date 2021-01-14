@@ -20,7 +20,7 @@ import android.app.Application;
 
 import com.sky.android.common.crash.CrashHandler;
 import com.sky.android.common.crash.CrashListener;
-import com.sky.android.common.util.AToast;
+import com.sky.android.common.util.ToastUtil;
 
 import java.io.File;
 
@@ -42,6 +42,6 @@ public class App extends Application {
         });
         Thread.setDefaultUncaughtExceptionHandler(crashHandler);
 
-        AToast.getInstance().init(this);
+        ToastUtil.initialize(this);
     }
 }

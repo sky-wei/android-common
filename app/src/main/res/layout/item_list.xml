@@ -15,7 +15,7 @@
   ~ limitations under the License.
   -->
 
-<com.sky.android.common.app.view.ItemLyaout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.sky.android.common.app.view.ItemLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,4 +29,4 @@
         android:layout_centerInParent="true"
         android:text="测试1"/>
 
-</com.sky.android.common.app.view.ItemLyaout>
+</com.sky.android.common.app.view.ItemLayout>

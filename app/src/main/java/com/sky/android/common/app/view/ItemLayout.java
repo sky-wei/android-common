@@ -24,22 +24,22 @@ import android.widget.RelativeLayout;
 /**
  * Created by sky on 16-8-20.
  */
-public class ItemLyaout extends RelativeLayout implements View.OnClickListener {
+public class ItemLayout extends RelativeLayout implements View.OnClickListener {
 
     private OnClickListener mOnClickListener;
     private OnItemSelectedListener mOnItemSelectedListener;
 
-    public ItemLyaout(Context context) {
+    public ItemLayout(Context context) {
         super(context);
         init();
     }
 
-    public ItemLyaout(Context context, AttributeSet attrs) {
+    public ItemLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public ItemLyaout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ItemLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }

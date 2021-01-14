@@ -23,15 +23,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sky.android.common.app.R;
-import com.sky.android.common.app.view.ItemLyaout;
-import com.sky.android.common.base.BaseListAdapter;
+import com.sky.android.common.app.view.ItemLayout;
+import com.sky.android.core.adapter.BaseListAdapter;
 
 /**
  * Created by sky on 16-8-20.
  */
 public class ListAdapter extends BaseListAdapter<String> {
 
-    private ItemLyaout curItemLyaout;
+    private ItemLayout curItemLayout;
     private OnItemSelectedListener mOnItemSelectedListener;
 
     public ListAdapter(Context context) {
@@ -76,9 +76,9 @@ public class ListAdapter extends BaseListAdapter<String> {
         return new ValueHolder(view, this);
     }
 
-    public class ValueHolder extends BaseListAdapter.ViewHolder implements ItemLyaout.OnItemSelectedListener {
+    public class ValueHolder extends BaseListAdapter.ViewHolder implements ItemLayout.OnItemSelectedListener {
 
-        private ItemLyaout mItemLayout;
+        private ItemLayout mItemLayout;
         private int mPosition;
         private TextView tv_name;
 
@@ -90,7 +90,7 @@ public class ListAdapter extends BaseListAdapter<String> {
         public void onInitialize() {
             super.onInitialize();
 
-            mItemLayout = (ItemLyaout) mItemView;
+            mItemLayout = (ItemLayout) mItemView;
             mItemLayout.setOnItemSelectedListener(this);
 
             tv_name = (TextView) findViewById(R.id.tv_name);
@@ -113,16 +113,16 @@ public class ListAdapter extends BaseListAdapter<String> {
             if (mOnItemSelectedListener == null) return ;
 
             if (selected) {
-                if (curItemLyaout != null) {
-                    curItemLyaout.setSelected(false);
+                if (curItemLayout != null) {
+                    curItemLayout.setSelected(false);
                 }
 
-                curItemLyaout = (ItemLyaout) view;
+                curItemLayout = (ItemLayout) view;
                 mOnItemSelectedListener.onItemSelected(view, mPosition);
                 return ;
             }
 
-            curItemLyaout = null;
+            curItemLayout = null;
             mOnItemSelectedListener.onNothingSelected();
         }
 
