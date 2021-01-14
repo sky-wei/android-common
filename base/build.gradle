@@ -1,9 +1,9 @@
 plugins {
     id 'com.android.library'
-    id 'com.github.dcendents.android-maven'
+    id 'maven-publish'
 }
 
-group='com.github.jingcai-wei.android-common'
+//group='com.github.jingcai-wei.android-common'
 
 android {
     compileSdkVersion 29
@@ -37,4 +37,17 @@ dependencies {
 //    testImplementation 'junit:junit:4.13.1'
 //    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
 //    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.jingcai-wei.android-common'
+                artifactId = 'base'
+                version = '1.2.1'
+            }
+        }
+    }
 }
