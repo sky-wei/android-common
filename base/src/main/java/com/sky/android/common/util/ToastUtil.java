@@ -129,7 +129,7 @@ public class ToastUtil {
 
         @Override
         public Toast create(Context context) {
-            return new Toast(context);
+            return Toast.makeText(context, "", Toast.LENGTH_SHORT);
         }
     }
 
