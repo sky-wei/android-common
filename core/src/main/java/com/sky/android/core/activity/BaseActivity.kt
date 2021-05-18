@@ -75,4 +75,12 @@ abstract class BaseActivity : AppCompatActivity(), IBaseView {
     override fun showMessage(msg: String) {
         ToastUtil.show(msg)
     }
+
+    /**
+     * 显示提示消息
+     * @param resId
+     */
+    fun showMessage(resId: Int) {
+        ToastUtil.show(resId)
+    }
 }

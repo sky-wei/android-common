@@ -120,4 +120,12 @@ abstract class BaseFragment : Fragment(), IBaseView {
     override fun showMessage(msg: String) {
         ToastUtil.show(msg)
     }
+
+    /**
+     * 显示提示消息
+     * @param resId
+     */
+    fun showMessage(resId: Int) {
+        ToastUtil.show(resId)
+    }
 }
