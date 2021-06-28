@@ -25,8 +25,8 @@ Step 2. Add the dependency
 
 ```
 dependencies {
-        implementation 'com.github.sky-wei.android-common:base:1.2.0'
-        implementation 'com.github.sky-wei.android-common:core:1.2.0'
+        implementation 'com.github.sky-wei.android-common:base:1.2.3'
+        implementation 'com.github.sky-wei.android-common:core:1.2.3'
 }
 ```
 
