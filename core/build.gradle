@@ -61,6 +61,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 //    testImplementation 'junit:junit:4.13.1'
@@ -78,7 +79,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.jingcai-wei.android-common'
                 artifactId = 'core'
-                version = '1.2.3'
+                version = '1.2.4'
             }
         }
     }

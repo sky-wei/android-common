@@ -17,9 +17,12 @@
 package com.sky.android.common.app;
 
 import android.content.Intent;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.sky.android.core.fragment.BrowseFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void onBrowse(View view) {
 
-//        Intent intent = new Intent(this, BrowseActivity.class);
-//        intent.putExtra(BrowseFragment.BROWSE_URL, "http://www.baidu.com");
-//
-//        startActivity(intent);
+        Intent intent = new Intent(this, BrowseActivity.class);
+        intent.putExtra(BrowseFragment.BROWSE_URL, "https://www.baidu.com");
+
+        startActivity(intent);
     }
 }
