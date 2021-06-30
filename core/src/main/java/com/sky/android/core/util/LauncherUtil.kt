@@ -53,6 +53,13 @@ object LauncherUtil {
     /**
      * 启动Activity
      */
+    fun startActivityForResult(activity: Activity, tClass: Class<out Activity>, requestCode: Int): Boolean {
+        return startActivityForResult(activity, Intent(activity, tClass), requestCode)
+    }
+
+    /**
+     * 启动Activity
+     */
     fun startActivityForResult(activity: Activity, intent: Intent, requestCode: Int): Boolean {
         try {
             // 启动Activity
@@ -67,6 +74,13 @@ object LauncherUtil {
     /**
      * 启动Activity
      */
+    fun startActivity(fragment: Fragment, tClass: Class<out Activity>): Boolean {
+        return startActivity(fragment, Intent(fragment.requireContext(), tClass))
+    }
+
+    /**
+     * 启动Activity
+     */
     fun startActivity(fragment: Fragment, intent: Intent): Boolean {
         try {
             // 启动Activity
@@ -76,6 +90,13 @@ object LauncherUtil {
             Alog.e(TAG, "启动Activity异常", e)
         }
         return false
+    }
+
+    /**
+     * 启动Activity
+     */
+    fun startActivityForResult(fragment: Fragment, tClass: Class<out Activity>, requestCode: Int): Boolean {
+        return startActivityForResult(fragment, Intent(fragment.requireContext(), tClass), requestCode)
     }
 
     /**
