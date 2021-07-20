@@ -79,7 +79,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.jingcai-wei.android-common'
                 artifactId = 'core'
-                version = '1.2.4'
+                version = '1.2.5'
             }
         }
     }
