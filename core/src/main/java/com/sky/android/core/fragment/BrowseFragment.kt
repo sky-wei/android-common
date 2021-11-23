@@ -189,8 +189,7 @@ open class BrowseFragment : BaseFragment(), IBrowseView, DownloadListener {
 
     override fun getUrl(): String {
         // 获取当前的URL
-        val url = mWebView.url
-        if (TextUtils.isEmpty(url)) return ""
+        val url = mWebView.url?: return ""
         return if (url.startsWith("file:")) mOriginalUrl?:"" else url
     }
 
