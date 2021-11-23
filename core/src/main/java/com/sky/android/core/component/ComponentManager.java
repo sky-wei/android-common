@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * Created by sky on 2021-07-20.
  */
-final class ComponentManager implements IComponentManager {
+public final class ComponentManager implements IComponentManager {
 
     private final Map<Class<? extends IComponent>, IComponent> mComponentMap = new HashMap<>();
     private final List<IComponentManager.ComponentListener> mListeners = new ArrayList<>();
