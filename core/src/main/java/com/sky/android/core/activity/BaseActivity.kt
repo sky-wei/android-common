@@ -30,8 +30,11 @@ abstract class BaseActivity : AppCompatActivity(), IBaseView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // 获取布局文件id
-        setContentView(layoutId)
+        layoutId.also {
+            if (it != 0) {
+                setContentView(it)
+            }
+        }
 
         // 初始化
         initView(savedInstanceState, intent)

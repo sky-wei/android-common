@@ -3,8 +3,6 @@ plugins {
     id 'maven-publish'
 }
 
-//group='com.github.jingcai-wei.android-common'
-
 android {
     compileSdkVersion 29
     buildToolsVersion '29.0.3'
@@ -12,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 2
-        versionName "1.0.1"
+        versionCode 3
+        versionName "1.0.3"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         consumerProguardFiles "consumer-rules.pro"
@@ -46,7 +44,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.jingcai-wei.android-common'
                 artifactId = 'base'
-                version = '1.2.5'
+                version = '1.2.6'
             }
         }
     }
