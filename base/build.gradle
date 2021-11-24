@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 29
+        targetSdkVersion 30
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         consumerProguardFiles "consumer-rules.pro"
@@ -42,7 +42,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.jingcai-wei.android-common'
                 artifactId = 'base'
-                version = '1.2.8'
+                version = '1.2.9'
             }
         }
     }
