@@ -66,8 +66,10 @@ public class BrowseActivity extends AppCompatActivity implements IBrowseView.Bro
         args.putString(BrowseFragment.BROWSE_URL, loadUrl);
 
         // 创建Fragment实例
-        Fragment fragment = Fragment.instantiate(
-                getApplication(), BrowseFragment.class.getName(), args);
+        Fragment fragment = getSupportFragmentManager().getFragmentFactory().instantiate(
+                getClassLoader(), BrowseFragment.class.getName()
+        );
+        fragment.setArguments(args);
         mBrowseView = (IBrowseView) fragment;
         mBrowseView.addBrowseListener(this);
 

@@ -76,11 +76,11 @@ public class ListAdapter extends BaseListAdapter<String> {
         return new ValueHolder(view, this);
     }
 
-    public class ValueHolder extends BaseListAdapter.ViewHolder implements ItemLayout.OnItemSelectedListener {
+    public class ValueHolder extends BaseListAdapter.ViewHolder<String> implements ItemLayout.OnItemSelectedListener {
 
         private ItemLayout mItemLayout;
         private int mPosition;
-        private TextView tv_name;
+//        private TextView tvName;
 
         public ValueHolder(View itemView, BaseListAdapter<String> baseListAdapter) {
             super(itemView, baseListAdapter);
@@ -93,7 +93,7 @@ public class ListAdapter extends BaseListAdapter<String> {
             mItemLayout = (ItemLayout) mItemView;
             mItemLayout.setOnItemSelectedListener(this);
 
-            tv_name = (TextView) findViewById(R.id.tv_name);
+//            tvName = (TextView) findViewById(R.id.tv_name);
         }
 
         public void setSelected(boolean selected) {

@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 31
+    buildToolsVersion "31.0.0"
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 30
+        targetSdkVersion 31
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         consumerProguardFiles "consumer-rules.pro"
@@ -29,7 +29,7 @@ android {
 
 dependencies {
 //    implementation 'androidx.appcompat:appcompat:1.2.0'
-    compileOnly 'androidx.annotation:annotation:1.2.0'
+    compileOnly 'androidx.annotation:annotation:1.3.0'
 //    testImplementation 'junit:junit:4.13.1'
 //    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
 //    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -42,7 +42,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.jingcai-wei.android-common'
                 artifactId = 'base'
-                version = '1.2.9'
+                version = '1.3.0'
             }
         }
     }
