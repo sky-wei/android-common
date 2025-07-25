@@ -245,8 +245,8 @@ open class BrowseFragment : BaseFragment(), IBrowseView, DownloadListener {
         settings.domStorageEnabled = true
         settings.databaseEnabled = true
         settings.cacheMode = WebSettings.LOAD_DEFAULT
-        settings.setAppCacheEnabled(true)
-        settings.setAppCachePath(context!!.cacheDir.absolutePath)
+//        settings.setAppCacheEnabled(true)
+//        settings.setAppCachePath(context!!.cacheDir.absolutePath)
         //设置可访问文件
         settings.allowFileAccess = true
         //当webview调用requestFocus时为webview设置节点
@@ -294,7 +294,7 @@ open class BrowseFragment : BaseFragment(), IBrowseView, DownloadListener {
             return
         }
         val decor = window.decorView as FrameLayout
-        mFullScreenContainer = FullscreenHolder(context!!)
+        mFullScreenContainer = FullscreenHolder(requireContext())
         mFullScreenContainer?.addView(view, COVER_SCREEN_PARAMS)
         decor.addView(mFullScreenContainer, COVER_SCREEN_PARAMS)
         mCustomView = view
@@ -327,7 +327,7 @@ open class BrowseFragment : BaseFragment(), IBrowseView, DownloadListener {
     }
 
     private val window: Window
-        private get() = activity!!.window
+        private get() = requireActivity().window
 
     override fun onDownloadStart(
         url: String,
@@ -339,7 +339,7 @@ open class BrowseFragment : BaseFragment(), IBrowseView, DownloadListener {
         // 启动外部下载
         val uri = Uri.parse(url)
         val intent = Intent(Intent.ACTION_VIEW, uri)
-        context!!.startActivity(intent)
+        requireContext().startActivity(intent)
     }
 
     /** 全屏容器界面  */
