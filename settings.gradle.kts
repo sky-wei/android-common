@@ -1,22 +1,22 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
-buildscript {
-    ext.kotlin_version = '1.7.0'
+pluginManagement {
     repositories {
         maven { url=uri("https://maven.aliyun.com/repository/public") }
         maven { url=uri("https://maven.aliyun.com/repository/central") }
         maven { url=uri("https://maven.aliyun.com/repository/gradle-plugin") }
         maven { url=uri("https://jitpack.io") }
-        google()
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
         mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        gradlePluginPortal()
     }
 }
-
-allprojects {
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         maven { url=uri("https://maven.aliyun.com/repository/public") }
         maven { url=uri("https://maven.aliyun.com/repository/central") }
@@ -26,6 +26,6 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+include(":core")
+include(":base")
+include(":app")

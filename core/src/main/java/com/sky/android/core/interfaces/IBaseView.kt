@@ -26,7 +26,7 @@ interface IBaseView {
     /**
      * 获取Lifecycle
      */
-    fun getLifecycle(): Lifecycle
+    fun getMyLifecycle(): Lifecycle
 
     /**
      * 显示加载提示框

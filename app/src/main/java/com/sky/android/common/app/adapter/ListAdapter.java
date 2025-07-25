@@ -22,6 +22,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.sky.android.common.app.R;
 import com.sky.android.common.app.view.ItemLayout;
 import com.sky.android.core.adapter.BaseListAdapter;
@@ -72,7 +74,7 @@ public class ListAdapter extends BaseListAdapter<String> {
     }
 
     @Override
-    public ViewHolder<String> onCreateViewHolder(View view, int viewType) {
+    public ViewHolder<String> onCreateViewHolder(@NonNull View view, int viewType) {
         return new ValueHolder(view, this);
     }
 

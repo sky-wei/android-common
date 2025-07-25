@@ -27,6 +27,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -133,15 +134,15 @@ public class BrowseActivity extends AppCompatActivity implements IBrowseView.Bro
     }
 
     @Override
-    public void onInitWebView(IBrowseView webView) {
+    public void onInitWebView(@NonNull IBrowseView webView) {
     }
 
     @Override
-    public void onReleaseWebView(IBrowseView webView) {
+    public void onReleaseWebView(@NonNull IBrowseView webView) {
     }
 
     @Override
-    public void onReceivedTitle(String title) {
+    public void onReceivedTitle(@NonNull String title) {
         if (getSupportActionBar() != null) getSupportActionBar().setTitle(title);
     }
 }

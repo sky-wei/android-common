@@ -30,6 +30,7 @@ import android.webkit.*
 import android.widget.FrameLayout
 import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.Lifecycle
 import com.sky.android.common.util.Alog
 import com.sky.android.common.util.ViewUtil
 import com.sky.android.core.R
@@ -37,6 +38,7 @@ import com.sky.android.core.interfaces.IBrowseView
 import com.sky.android.core.interfaces.IBrowseView.BrowseListener
 import com.sky.android.core.util.PatchUtil.repairMediaUri
 import java.util.*
+import androidx.core.net.toUri
 
 /**
  * Created by sky on 2021-06-28.
@@ -114,6 +116,7 @@ open class BrowseFragment : BaseFragment(), IBrowseView, DownloadListener {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(
         requestCode: Int,
         resultCode: Int,
@@ -337,14 +340,20 @@ open class BrowseFragment : BaseFragment(), IBrowseView, DownloadListener {
         contentLength: Long
     ) {
         // 启动外部下载
-        val uri = Uri.parse(url)
+        val uri = url.toUri()
         val intent = Intent(Intent.ACTION_VIEW, uri)
         requireContext().startActivity(intent)
+    }
+
+
+    override fun getMyLifecycle(): Lifecycle {
+        return requireActivity().lifecycle
     }
 
     /** 全屏容器界面  */
     private inner class FullscreenHolder(ctx: Context) :
         FrameLayout(ctx) {
+        @SuppressLint("ClickableViewAccessibility")
         override fun onTouchEvent(evt: MotionEvent): Boolean {
             return true
         }
@@ -363,6 +372,7 @@ open class BrowseFragment : BaseFragment(), IBrowseView, DownloadListener {
             return super.shouldOverrideUrlLoading(view, request)
         }
 
+        @Deprecated("Deprecated in Java")
         override fun onReceivedError(
             view: WebView,
             errorCode: Int,
@@ -397,7 +407,7 @@ open class BrowseFragment : BaseFragment(), IBrowseView, DownloadListener {
         }
 
         override fun getVideoLoadingProgressView(): View? {
-            val frameLayout = FrameLayout(context!!)
+            val frameLayout = FrameLayout(context)
             frameLayout.layoutParams = FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT
             )
